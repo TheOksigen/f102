@@ -7,15 +7,18 @@ export const favoriteSlice = createSlice({
 	initialState,
 	reducers: {
 		toggleFavorites: (state, { payload: recipe }) => {
+
 			const isExists = state.some((r) => r.id === recipe.id);
 			if (isExists) {
-				state = state.filter((r) => r.id !== recipe.id);
+				return state.filter((r) => r.id !== recipe.id);
 			} else {
 				state.push(recipe);
+				return state;
 			}
 		},
+
 	},
 });
 
-export const { toggleFavorites } = favoriteSlice.actions;
 export const favoriteReducer = favoriteSlice.reducer;
+export const { actions, payload } = favoriteSlice
